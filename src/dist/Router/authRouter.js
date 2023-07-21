@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const authController_1 = require("../Controller/authController");
+const multer_1 = require("../Config/multer");
+const auth = (0, express_1.Router)();
+auth.route("/new-user").post(multer_1.Upload, authController_1.createUser);
+auth.route("/get-all").get(authController_1.viewUser);
+auth.route("/sign-in").post(authController_1.signinUser);
+auth.route("/:userID/get-one").get(authController_1.viewOneUser);
+auth.route("/:userID/update-one").patch(authController_1.updateOneUser);
+auth.route("/:userID/delete-one").delete(authController_1.deleteOneUser);
+exports.default = auth;
